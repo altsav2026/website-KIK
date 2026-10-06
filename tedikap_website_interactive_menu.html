@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tedikap — Your Little Break, Your Little Treat! 🧋✨</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FAF7ED',
+                        'cream-light': '#FFFDF7',
+                        'tedi-green': '#3D7847',
+                        'tedi-green-dark': '#2B5833',
+                        'tedi-green-light': '#E2EFE0',
+                        'tedi-yellow': '#FDF3A9',
+                        'tedi-yellow-bright': '#FFF275',
+                        'tedi-periwinkle': '#A8B5E0',
+                        'tedi-lavender': '#D0D8F5',
+                        'tedi-orange': '#FFA775',
+                        'tedi-orange-dark': '#FF8E63',
+                        'tedi-brown': '#4A3025',
+                        'tedi-pink': '#FFD8E4',
+                    },
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        quicksand: ['Quicksand', 'sans-serif'],
+                        gaegu: ['Gaegu', 'cursive'],
+                    },
+                    boxShadow: {
+                        'sticker': '3px 4px 0px #4A3025',
+                        'sticker-lg': '5px 6px 0px #4A3025',
+                        'sticker-hover': '7px 8px 0px #4A3025',
+                        'soft-inset': 'inset 0 2px 4px rgba(0,0,0,0.06)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles & Micro-Animations */
+        body {
+            background-color: #FAF7ED;
+            color: #4A3025;
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .font-handwriting {
+            font-family: 'Gaegu', cursive;
+        }
+
+        /* Floating elements animation */
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(3deg); }
+        }
+
+        @keyframes float-reverse {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(8px) rotate(-3deg); }
+        }
+
+        @keyframes pulse-gentle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .animate-float {
+            animation: float-slow 4s ease-in-out infinite;
+        }
+
+        .animate-float-reverse {
+            animation: float-reverse 4.5s ease-in-out infinite;
+        }
+
+        .animate-pulse-gentle {
+            animation: pulse-gentle 2.5s ease-in-out infinite;
+        }
+
+        /* Sticker hover effect */
+        .sticker-card {
+            border: 2.5px solid #4A3025;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .sticker-card:hover {
+            transform: translateY(-5px) rotate(-1.5deg);
+            box-shadow: 7px 8px 0px #4A3025;
+        }
+
+        .sticker-btn {
+            border: 2px solid #4A3025;
+            box-shadow: 3px 3px 0px #4A3025;
+            transition: all 0.15s ease-in-out;
+        }
+
+        .sticker-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px #4A3025;
+        }
+
+        .sticker-btn:active {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0px #4A3025;
+        }
+
+        /* Wavy pattern background */
+        .bg-dots {
+            background-image: radial-gradient(#3D7847 1.2px, transparent 1.2px);
+            background-size: 20px 20px;
+            opacity: 0.12;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF7ED;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3D7847;
+            border-radius: 10px;
+            border: 2px solid #FAF7ED;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen pb-16 selection:bg-tedi-yellow selection:text-tedi-brown">
+
+    <!-- Dots texture background overlay -->
+    <div class="fixed inset-0 bg-dots pointer-events-none z-0"></div>
+
+    <!-- FLOATING NAVBAR -->
+    <nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[92%] max-w-6xl z-40">
+        <div class="bg-cream-light/95 backdrop-blur-md border-2 border-tedi-brown rounded-full px-4 py-2.5 shadow-sticker flex items-center justify-between transition-all">
+            
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded-full bg-tedi-yellow border-2 border-tedi-brown flex items-center justify-center text-xl shadow-sm group-hover:rotate-12 transition-transform">
+                    🧋
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-heading text-2xl font-bold text-tedi-brown leading-none tracking-wide">Tedikap</span>
+                    <span class="font-handwriting text-xs text-tedi-green font-bold tracking-wider -mt-0.5">little treat ♡</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <div class="hidden md:flex items-center gap-1 bg-tedi-green-light/60 p-1.5 rounded-full border border-tedi-green/20">
+                <a href="#hero" class="px-4 py-1.5 rounded-full font-bold text-sm text-tedi-brown hover:bg-white hover:shadow-sm transition-all">Home</a>
+                <a href="#menu" class="px-4 py-1.5 rounded-full font-bold text-sm text-tedi-brown hover:bg-white hover:shadow-sm transition-all">Menu</a>
+                <a href="#new-drops" class="px-4 py-1.5 rounded-full font-bold text-sm text-tedi-brown hover:bg-white hover:shadow-sm transition-all flex items-center gap-1">
+                    New <span class="text-xs">✦</span>
+                </a>
+                <a href="#suggest" class="px-4 py-1.5 rounded-full font-bold text-sm text-tedi-brown hover:bg-white hover:shadow-sm transition-all">Suggest</a>
+                <a href="#promos" class="px-4 py-1.5 rounded-full font-bold text-sm text-tedi-brown hover:bg-white hover:shadow-sm transition-all">Promos</a>
+            </div>
+
+            <!-- Action Buttons Right -->
+            <div class="flex items-center gap-2">
+                <!-- Store Status Indicator Badge -->
+                <button onclick="scrollToStatus()" class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-tedi-green-light border border-tedi-green text-tedi-green-dark text-xs font-bold hover:bg-tedi-green hover:text-white transition-all">
+                    <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-ping"></span>
+                    <span>Open!</span>
+                </button>
+
+                <!-- Cart Button -->
+                <button onclick="toggleCart()" class="relative bg-tedi-orange text-tedi-brown p-2.5 px-3.5 rounded-full sticker-btn font-bold flex items-center gap-2 text-sm">
+                    <i class="fa-solid font-bold fa-basket-shopping text-base"></i>
+                    <span class="hidden sm:inline">Order</span>
+                    <span id="cart-count-badge" class="bg-tedi-brown text-white text-xs px-2 py-0.5 rounded-full font-bold">0</span>
+                </button>
+
+                <!-- Admin View Toggle -->
+                <button onclick="openAdminModal()" class="p-2.5 rounded-full bg-tedi-periwinkle border-2 border-tedi-brown text-tedi-brown sticker-btn text-xs font-bold" title="Admin View">
+                    <i class="fa-solid fa-user-gear text-base"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden z-10">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            
+            <!-- Left Column Copy -->
+            <div class="md:col-span-7 text-center md:text-left z-10">
+                <!-- Cute badge -->
+                <div class="inline-flex items-center gap-2 bg-tedi-yellow px-4 py-1.5 rounded-full border-2 border-tedi-brown shadow-sticker text-xs md:text-sm font-bold text-tedi-brown mb-4 animate-bounce">
+                    <span>:o</span>
+                    <span>Siswa & Mahasiswa Favorite Break Spot!</span>
+                    <span>✦</span>
+                </div>
+
+                <h1 class="text-4xl md:text-6xl font-extrabold text-tedi-brown leading-tight mb-4">
+                    Your little break, <br class="hidden md:block"/>
+                    <span class="text-tedi-green relative inline-block">
+                        your little treat. 
+                        <!-- Doodle underline SVG -->
+                        <svg class="absolute -bottom-2 left-0 w-full h-3 text-tedi-orange" viewBox="0 0 100 20" preserveAspectRatio="none">
+                            <path d="M0,10 Q50,20 100,10" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+                        </svg>
+                    </span> ♡
+                </h1>
+
+                <p class="text-base md:text-lg text-tedi-brown/90 font-medium mb-8 max-w-lg mx-auto md:mx-0">
+                    Teh segar, kopi mantap, dan snack lezat berharga ramah kantong siap bikin harimu makin ceria dan berenergi! 🍃🧋
+                </p>
+
+                <!-- Call to action buttons -->
+                <div class="flex flex-wrap items-center justify-center md:justify-start gap-4">
+                    <a href="#menu" class="bg-tedi-green text-white font-heading font-bold text-lg px-7 py-3.5 rounded-full sticker-btn hover:bg-tedi-green-dark flex items-center gap-2 group">
+                        <span>Explore Menu</span>
+                        <i class="fa-solid fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
+                    </a>
+                    <a href="#suggest" class="bg-tedi-yellow text-tedi-brown font-heading font-bold text-lg px-6 py-3.5 rounded-full sticker-btn hover:bg-tedi-yellow-bright flex items-center gap-2">
+                        <span>Suggest a Menu</span>
+                        <span>💡</span>
+                    </a>
+                </div>
+
+                <!-- Quick tags / perks -->
+                <div class="mt-8 flex items-center justify-center md:justify-start gap-6 font-handwriting text-lg text-tedi-brown font-bold">
+                    <span class="flex items-center gap-1"><i class="fa-solid fa-check text-tedi-green"></i> Serba Fresh</span>
+                    <span class="flex items-center gap-1"><i class="fa-solid fa-check text-tedi-green"></i> Kantong Friendly</span>
+                    <span class="flex items-center gap-1"><i class="fa-solid fa-check text-tedi-green"></i> 100% Halal</span>
+                </div>
+            </div>
+
+            <!-- Right Column Hero Illustration Canvas -->
+            <div class="md:col-span-5 relative flex justify-center">
+                
+                <!-- Main Showcase Container dengan Gambar Ilustrasi -->
+                <div class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full bg-tedi-yellow/80 border-4 border-tedi-brown flex items-center justify-center shadow-sticker-lg p-4 sm:p-6 transition-transform duration-300 hover:scale-105">
+                    
+                    <!-- Ilustrasi Utama Tedikap -->
+                    <div class="relative w-full h-full rounded-full border-2 border-tedi-brown overflow-hidden bg-tedi-green-light flex items-center justify-center shadow-inner">
+                        <img 
+                            src="image.jpg" 
+                            alt="Tedikap Playful Illustration" 
+                            class="w-full h-full object-cover object-center transform scale-105 hover:scale-110 transition-transform duration-500"
+                        />
+                    </div>
+
+                    <!-- Floating Sticker Cards di Sekitar Gambar Hero -->
+                    <div class="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 bg-white px-3 py-1.5 rounded-2xl border-2 border-tedi-brown shadow-sticker text-xs sm:text-sm font-bold text-tedi-brown animate-float">
+                        Fresh Tea 🍃
+                    </div>
+                    
+                    <div class="absolute top-1/2 -right-4 sm:-right-6 bg-tedi-pink px-3 py-1 sm:py-1.5 rounded-2xl border-2 border-tedi-brown shadow-sticker text-xs sm:text-sm font-bold text-tedi-brown animate-float-reverse">
+                        Chewy Cookies! 🍪
+                    </div>
+
+                    <div class="absolute -bottom-2 left-6 sm:left-8 bg-tedi-periwinkle px-3 py-1 sm:py-1.5 rounded-2xl border-2 border-tedi-brown shadow-sticker text-xs sm:text-sm font-bold text-tedi-brown animate-float">
+                        Mulai 8 Ribuan! ✨
+                    </div>
+
+                    <!-- Sparkles Deco -->
+                    <span class="absolute top-2 right-4 text-tedi-orange text-2xl sm:text-3xl animate-pulse select-none">✦</span>
+                    <span class="absolute bottom-8 -left-4 sm:-left-6 text-tedi-green text-3xl sm:text-4xl animate-bounce select-none">✦</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE STORE STATUS CARD -->
+    <section id="store-status" class="max-w-6xl mx-auto px-4 my-6">
+        <div class="bg-tedi-green-light border-2 border-tedi-brown rounded-3xl p-4 md:p-6 shadow-sticker flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4 text-center md:text-left">
+                <div class="w-14 h-14 rounded-2xl bg-tedi-green border-2 border-tedi-brown flex items-center justify-center text-3xl text-white shadow-sm shrink-0">
+                    🏪
+                </div>
+                <div>
+                    <div class="flex items-center justify-center md:justify-start gap-2">
+                        <span class="w-3 h-3 rounded-full bg-green-500 animate-ping"></span>
+                        <h3 class="font-heading text-xl font-bold text-tedi-brown">Kedai Tedikap Operational Status</h3>
+                    </div>
+                    <p class="text-sm font-medium text-tedi-brown/80">
+                        Buka Setiap Hari: <span class="font-bold text-tedi-green-dark">08:00 - 21:00 WIB</span> • Siap Melayani Pesanan Tempat & Takeaway!
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <div class="bg-white border-2 border-tedi-brown px-4 py-2 rounded-2xl text-center shadow-sm">
+                    <span class="block text-xs font-bold text-tedi-brown/60 uppercase tracking-wider">Status Toko</span>
+                    <span class="font-heading font-bold text-tedi-green text-base">🟢 Open Now</span>
+                </div>
+                <a href="#menu" class="bg-tedi-orange text-tedi-brown font-heading font-bold px-5 py-2.5 rounded-2xl sticker-btn text-sm">
+                    Pesan Sekarang
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT MENU SECTION -->
+    <section id="menu" class="max-w-6xl mx-auto px-4 py-12">
+        <div class="text-center mb-10">
+            <div class="inline-block bg-tedi-pink border-2 border-tedi-brown px-4 py-1 rounded-full text-xs font-bold mb-2 shadow-sm">
+                Today's Little Treat ♡
+            </div>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-tedi-brown mb-3">
+                Menu Favorit Tedikap 🧋✨
+            </h2>
+            <p class="text-tedi-brown/80 font-medium max-w-md mx-auto">
+                Pilih racikan minuman segar dan snack lezat sesuai suasana hatimu hari ini!
+            </p>
+
+            <!-- Filter Buttons Tabs -->
+            <div class="flex flex-wrap items-center justify-center gap-2 md:gap-3 mt-8">
+                <button onclick="filterMenu('all')" class="menu-tab-btn active bg-tedi-brown text-white border-2 border-tedi-brown px-5 py-2 rounded-full font-bold text-sm sticker-btn">
+                    All Menu 🌟
+                </button>
+                <button onclick="filterMenu('tea')" class="menu-tab-btn bg-cream-light text-tedi-brown border-2 border-tedi-brown px-5 py-2 rounded-full font-bold text-sm sticker-btn">
+                    Jasmine & Tea Series 🍃
+                </button>
+                <button onclick="filterMenu('coffee')" class="menu-tab-btn bg-cream-light text-tedi-brown border-2 border-tedi-brown px-5 py-2 rounded-full font-bold text-sm sticker-btn">
+                    Coffee Series ☕
+                </button>
+                <button onclick="filterMenu('non-coffee')" class="menu-tab-btn bg-cream-light text-tedi-brown border-2 border-tedi-brown px-5 py-2 rounded-full font-bold text-sm sticker-btn">
+                    Non-Coffee 🍫
+                </button>
+                <button onclick="filterMenu('food')" class="menu-tab-btn bg-cream-light text-tedi-brown border-2 border-tedi-brown px-5 py-2 rounded-full font-bold text-sm sticker-btn">
+                    Food & Snacks 🥪
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Items Grid Container -->
+        <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Dynamic JavaScript Content injected here -->
+        </div>
+    </section>
+
+    <!-- NEW MENU SECTION (Polaroid / Scrapbook Inspired) -->
+    <section id="new-drops" class="max-w-6xl mx-auto px-4 py-12 my-6">
+    <div class="bg-tedi-yellow/60 border-3 border-tedi-brown rounded-3xl p-6 md:p-10 relative overflow-hidden shadow-sticker-lg">
+
+        <!-- Decorative Doodle Badge -->
+        <div class="absolute -right-6 -top-6 w-28 h-28 bg-tedi-orange/30 rounded-full border-2 border-tedi-brown -z-0"></div>
+
+        <div class="text-center md:text-left mb-8 relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+                <span class="bg-tedi-orange text-tedi-brown border-2 border-tedi-brown text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                    NEW ARRIVALS ✦
+                </span>
+
+                <h2 class="text-3xl md:text-4xl font-extrabold text-tedi-brown mt-2">
+                    Something new just dropped! ✦
+                </h2>
+
+                <p class="text-tedi-brown/80 font-medium">
+                    Cobain varian baru spesial bulan ini sebelum kehabisan!
+                </p>
+            </div>
+
+            <div class="font-handwriting text-2xl text-tedi-green-dark font-bold transform rotate-2">
+                "Paling ditunggu-tunggu! ♡"
+            </div>
+        </div>
+
+        <!-- Spotlight Polaroid Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+
+            <!-- Polaroid Item 1 -->
+            <div class="bg-white p-4 rounded-2xl border-2 border-tedi-brown shadow-sticker transform -rotate-1 hover:rotate-0 transition-transform">
+
+                <div class="h-44 bg-tedi-green-light rounded-xl border border-tedi-brown flex items-center justify-center relative overflow-hidden mb-3">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=500"
+                        alt="Dubai Chewy Cookie"
+                        class="w-full h-full object-cover"
+                        loading="lazy"
+                    >
+
+                    <span class="absolute top-2 right-2 bg-tedi-orange text-tedi-brown text-[10px] font-bold px-2 py-0.5 rounded-full border border-tedi-brown">
+                        HOT ITEM
+                    </span>
+                </div>
+
+                <div class="text-center">
+                    <h4 class="font-heading font-bold text-lg text-tedi-brown">
+                        Dubai Chewy Cookie
+                    </h4>
+
+                    <p class="text-xs text-tedi-brown/70 mb-2">
+                        Cookie cokelat lumer renyah & chewy khas Dubai!
+                    </p>
+
+                    <div class="flex items-center justify-between mt-3 pt-2 border-t border-dashed border-tedi-brown/30">
+                        <span class="font-heading font-bold text-tedi-green text-base">
+                            Rp 18.000
+                        </span>
+
+                        <button
+                            onclick="addToCart(14)"
+                            class="bg-tedi-yellow text-tedi-brown font-bold text-xs px-3 py-1.5 rounded-full sticker-btn"
+                        >
+                            + Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Polaroid Item 2 -->
+            <div class="bg-white p-4 rounded-2xl border-2 border-tedi-brown shadow-sticker transform rotate-2 hover:rotate-0 transition-transform">
+
+                <div class="h-44 bg-tedi-lavender rounded-xl border border-tedi-brown flex items-center justify-center relative overflow-hidden mb-3">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1593443320739-77f74939d0da?w=500"
+                        alt="Vanilla Latte"
+                        class="w-full h-full object-cover"
+                        loading="lazy"
+                    >
+
+                    <span class="absolute top-2 right-2 bg-tedi-yellow text-tedi-brown text-[10px] font-bold px-2 py-0.5 rounded-full border border-tedi-brown">
+                        NEW FLAVOR
+                    </span>
+                </div>
+
+                <div class="text-center">
+                    <h4 class="font-heading font-bold text-lg text-tedi-brown">
+                        Vanilla Latte
+                    </h4>
+
+                    <p class="text-xs text-tedi-brown/70 mb-2">
+                        Espresso harum dengan sirup vanilla lembut.
+                    </p>
+
+                    <div class="flex items-center justify-between mt-3 pt-2 border-t border-dashed border-tedi-brown/30">
+                        <span class="font-heading font-bold text-tedi-green text-base">
+                            Rp 18.000
+                        </span>
+
+                        <button
+                            onclick="addToCart(7)"
+                            class="bg-tedi-yellow text-tedi-brown font-bold text-xs px-3 py-1.5 rounded-full sticker-btn"
+                        >
+                            + Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Polaroid Item 3 -->
+            <div class="bg-white p-4 rounded-2xl border-2 border-tedi-brown shadow-sticker transform -rotate-2 hover:rotate-0 transition-transform">
+
+                <div class="h-44 bg-blue-100 rounded-xl border border-tedi-brown flex items-center justify-center relative overflow-hidden mb-3">
+
+                    <img
+                        src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/articles/health_tools/best_and_worst_drinks_for_your_health_slideshow/1800ss_thinkstock_rf_two_glasses_of_coconut_water.jpg?resize=750px:*&output-quality=75"
+                        alt="Coconut Water"
+                        class="w-full h-full object-cover"
+                        loading="lazy"
+                    >
+
+                    <span class="absolute top-2 right-2 bg-tedi-green text-white text-[10px] font-bold px-2 py-0.5 rounded-full border border-tedi-brown">
+                        SUPER FRESH
+                    </span>
+                </div>
+
+                <div class="text-center">
+                    <h4 class="font-heading font-bold text-lg text-tedi-brown">
+                        Coconut Water
+                    </h4>
+
+                    <p class="text-xs text-tedi-brown/70 mb-2">
+                        Air kelapa asli penyegar dahaga setelah aktivitas.
+                    </p>
+
+                    <div class="flex items-center justify-between mt-3 pt-2 border-t border-dashed border-tedi-brown/30">
+                        <span class="font-heading font-bold text-tedi-green text-base">
+                            Rp 12.000
+                        </span>
+
+                        <button
+                            onclick="addToCart(11)"
+                            class="bg-tedi-yellow text-tedi-brown font-bold text-xs px-3 py-1.5 rounded-full sticker-btn"
+                        >
+                            + Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <!-- SUGGEST A MENU SECTION -->
+    <section id="suggest" class="max-w-6xl mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            
+            <!-- Left Suggest Form -->
+            <div class="md:col-span-5 bg-cream-light border-2 border-tedi-brown rounded-3xl p-6 shadow-sticker">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="text-2xl">💡</span>
+                    <h3 class="font-heading text-2xl font-bold text-tedi-brown">Got a menu idea?</h3>
+                </div>
+                <p class="text-sm text-tedi-brown/80 mb-6 font-medium">
+                    Ketik kreasi minuman atau snack impianmu! Gagasan terbaik akan kita wujudkan di menu Tedikap berikutnya! ✦
+                </p>
+
+                <form id="suggestion-form" onsubmit="submitSuggestion(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-tedi-brown mb-1">Nama Kamu / Username</label>
+                        <input type="text" id="sug-name" required placeholder="ex: Budi Anak SMA 1" class="w-full bg-white border-2 border-tedi-brown rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-tedi-green">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-tedi-brown mb-1">Kategori Menu</label>
+                        <select id="sug-category" class="w-full bg-white border-2 border-tedi-brown rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-tedi-green">
+                            <option value="Drink Series 🧋">Drink Series 🧋</option>
+                            <option value="Coffee Special ☕">Coffee Special ☕</option>
+                            <option value="Snack & Food 🥪">Snack & Food 🥪</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-tedi-brown mb-1">Ide Kamu & Rasa</label>
+                        <textarea id="sug-idea" required rows="3" placeholder="ex: Kopi Matcha Latte pake boba rasa pandan dong kak!" class="w-full bg-white border-2 border-tedi-brown rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-tedi-green"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-tedi-green text-white font-heading font-bold py-3 rounded-xl sticker-btn hover:bg-tedi-green-dark">
+                        Kirim Ide Kamu ✨
+                    </button>
+                </form>
+            </div>
+
+            <!-- Right Sticky Notes Wall -->
+            <div class="md:col-span-7">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-heading text-2xl font-bold text-tedi-brown">Student Craving Board 📌</h3>
+                    <span class="font-handwriting text-xl text-tedi-green-dark font-bold">"Live suggestions!"</span>
+                </div>
+
+                <!-- Sticky Notes Grid Container -->
+                <div id="sticky-notes-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Dynamic Sticky Notes Injected by JS -->
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PROMOS & COLLABORATION STICKER WALL -->
+    <section id="promos" class="max-w-6xl mx-auto px-4 py-12">
+        <div class="text-center mb-8">
+            <span class="bg-tedi-periwinkle border-2 border-tedi-brown px-4 py-1 rounded-full text-xs font-bold">
+                SPECIAL DEALS
+            </span>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-tedi-brown mt-2">
+                Promo & Collaboration Wall 🎟️
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Ticket Promo 1 -->
+            <div class="bg-tedi-yellow border-2 border-tedi-brown rounded-2xl p-5 shadow-sticker relative overflow-hidden flex flex-col justify-between">
+                <div class="absolute -right-4 -top-4 w-12 h-12 bg-cream rounded-full border-2 border-tedi-brown"></div>
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="bg-tedi-brown text-white text-[10px] font-bold px-2 py-0.5 rounded-md">STUDENT DEAL</span>
+                        <i class="fa-solid fa-graduation-cap text-tedi-brown text-xl"></i>
+                    </div>
+                    <h4 class="font-heading font-bold text-xl text-tedi-brown mb-1">Diskon Kartu Pelajar 15%</h4>
+                    <p class="text-xs text-tedi-brown/80 font-medium">Tunjukkan kartu pelajar/mahasiswa aktif pas pembelian offline di kasir Tedikap!</p>
+                </div>
+                <div class="mt-4 pt-3 border-t-2 border-dashed border-tedi-brown/40 flex items-center justify-between text-xs font-bold text-tedi-brown">
+                    <span>Kode: <span class="bg-white px-2 py-0.5 rounded border border-tedi-brown">PELAJAR15</span></span>
+                    <span>Berlaku Setiap Hari</span>
+                </div>
+            </div>
+
+            <!-- Ticket Promo 2 -->
+            <div class="bg-tedi-orange border-2 border-tedi-brown rounded-2xl p-5 shadow-sticker relative overflow-hidden flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="bg-white text-tedi-brown text-[10px] font-bold px-2 py-0.5 rounded-md border border-tedi-brown">COMBO PAHO</span>
+                        <i class="fa-solid fa-cookie-bite text-tedi-brown text-xl"></i>
+                    </div>
+                    <h4 class="font-heading font-bold text-xl text-tedi-brown mb-1">Buy 2 Tea Get 1 Cookie Free</h4>
+                    <p class="text-xs text-tedi-brown/90 font-medium">Beli 2 Varian Tea Series favoritmu gratis 1 Cookie manis pemanja lidah!</p>
+                </div>
+                <div class="mt-4 pt-3 border-t-2 border-dashed border-tedi-brown/40 flex items-center justify-between text-xs font-bold text-tedi-brown">
+                    <span>Kode: <span class="bg-white px-2 py-0.5 rounded border border-tedi-brown">TEACHEWY</span></span>
+                    <span>Jam 12.00 - 16.00</span>
+                </div>
+            </div>
+
+            <!-- Collaboration Card -->
+            <div class="bg-tedi-lavender border-2 border-tedi-brown rounded-2xl p-5 shadow-sticker relative overflow-hidden flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="bg-tedi-green text-white text-[10px] font-bold px-2 py-0.5 rounded-md">SPECIAL COLLAB</span>
+                        <span class="text-lg">🐰🤝🧋</span>
+                    </div>
+                    <h4 class="font-heading font-bold text-xl text-tedi-brown mb-1">Tedikap x Rabbit Club</h4>
+                    <p class="text-xs text-tedi-brown/80 font-medium">Dapatkan Sticker Exclusive Limited Edition di setiap pembelian Combo Drink & Onigiri!</p>
+                </div>
+                <div class="mt-4 pt-3 border-t-2 border-dashed border-tedi-brown/40 flex items-center justify-between text-xs font-bold text-tedi-brown">
+                    <span>Free Sticker Pack</span>
+                    <span>Selama Persediaan Ada</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+<footer class="max-w-6xl mx-auto px-4 mt-16 mb-8">
+
+    <div class="bg-cream-light border-2 border-tedi-brown rounded-3xl shadow-sticker overflow-hidden">
+
+        <div class="grid grid-cols-1 md:grid-cols-3">
+
+            <!-- LEFT — ABOUT TEDIKAP -->
+            <div class="p-7 md:p-8 border-b md:border-b-0 md:border-r-2 border-tedi-brown/20">
+
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-tedi-yellow border-2 border-tedi-brown flex items-center justify-center overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=200"
+                            alt="Tedikap Tea"
+                            class="w-full h-full object-cover"
+                        >
+                    </div>
+
+                    <div>
+                        <h3 class="font-heading text-2xl font-extrabold text-tedi-brown leading-none">
+                            Tedikap
+                        </h3>
+
+                        <span class="text-xs font-bold text-tedi-brown/60">
+                            Drinks • Food • Hangout
+                        </span>
+                    </div>
+                </div>
+
+                <p class="text-sm leading-relaxed font-medium text-tedi-brown/75 mb-5">
+                    Kedai minuman & makanan favorit untuk nongkrong,
+                    nugas, dan istirahat sejenak bareng teman-teman.
+                </p>
+
+            </div>
+
+
+            <!-- CENTER — OPENING HOURS -->
+            <div class="p-7 md:p-8 border-b md:border-b-0 md:border-r-2 border-tedi-brown/20">
+
+                <span class="inline-block bg-tedi-orange text-tedi-brown border-2 border-tedi-brown text-[10px] font-bold px-3 py-1 rounded-full mb-4">
+                    OPENING HOURS
+                </span>
+
+                <h3 class="font-heading text-2xl font-extrabold text-tedi-brown mb-5">
+                    Kapan kita ketemu? ✦
+                </h3>
+
+                <div class="space-y-3">
+
+                    <div class="flex items-center justify-between border-b border-dashed border-tedi-brown/20 pb-3">
+                        <span class="text-sm font-bold text-tedi-brown">
+                            Monday — Friday
+                        </span>
+
+                        <span class="text-sm font-semibold text-tedi-green-dark">
+                            10:00 — 20:00
+                        </span>
+                    </div>
+
+                    <div class="flex items-center justify-between border-b border-dashed border-tedi-brown/20 pb-3">
+                        <span class="text-sm font-bold text-tedi-brown">
+                            Saturday
+                        </span>
+
+                        <span class="text-sm font-semibold text-tedi-green-dark">
+                            09:00 — 21:00
+                        </span>
+                    </div>
+
+                    <div class="flex items-center justify-between pb-2">
+                        <span class="text-sm font-bold text-tedi-brown">
+                            Sunday
+                        </span>
+
+                        <span class="text-sm font-semibold text-tedi-green-dark">
+                            09:00 — 20:00
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="mt-5 bg-tedi-yellow/50 border border-tedi-brown/30 rounded-2xl p-3 text-center">
+                    <p class="text-xs font-bold text-tedi-brown">
+                        ✦ Jam operasional dapat berubah saat libur ✦
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT — CONTACT -->
+            <div class="p-7 md:p-8">
+
+                <span class="inline-block bg-tedi-green text-white border-2 border-tedi-brown text-[10px] font-bold px-3 py-1 rounded-full mb-4">
+                    LET'S CONNECT
+                </span>
+
+                <h3 class="font-heading text-2xl font-extrabold text-tedi-brown mb-4">
+                    Find us here! ♡
+                </h3>
+
+                <!-- Location -->
+                <div class="flex items-start gap-3 mb-4">
+                    <div class="w-9 h-9 shrink-0 rounded-xl bg-tedi-yellow border-2 border-tedi-brown flex items-center justify-center">
+                        <i class="fa-solid fa-location-dot text-tedi-brown"></i>
+                    </div>
+
+                    <div>
+                        <p class="text-xs font-bold text-tedi-brown/50 uppercase">
+                            Location
+                        </p>
+
+                        <p class="text-sm font-semibold text-tedi-brown">
+                            Tedikap Indonesia
+                        </p>
+
+                        <p class="text-xs text-tedi-brown/65">
+                            Your favorite neighborhood spot
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div class="flex gap-2 mt-5">
+
+                    <a
+                        href="#"
+                        class="w-10 h-10 rounded-xl bg-tedi-yellow border-2 border-tedi-brown flex items-center justify-center hover:scale-110 transition-transform"
+                        aria-label="Instagram"
+                    >
+                        <i class="fa-brands fa-instagram text-lg text-tedi-brown"></i>
+                    </a>
+
+                    <a
+                        href="#"
+                        class="w-10 h-10 rounded-xl bg-tedi-orange border-2 border-tedi-brown flex items-center justify-center hover:scale-110 transition-transform"
+                        aria-label="TikTok"
+                    >
+                        <i class="fa-brands fa-tiktok text-lg text-tedi-brown"></i>
+                    </a>
+
+                    <a
+                        href="#"
+                        class="w-10 h-10 rounded-xl bg-tedi-green border-2 border-tedi-brown flex items-center justify-center hover:scale-110 transition-transform"
+                        aria-label="WhatsApp"
+                    >
+                        <i class="fa-brands fa-whatsapp text-lg text-white"></i>
+                    </a>
+
+                </div>
+
+                <!-- CTA -->
+                <div class="mt-5">
+                    <a
+                        href="#menu"
+                        class="inline-flex items-center gap-2 bg-tedi-brown text-white font-bold text-xs px-4 py-2 rounded-full hover:bg-tedi-green-dark transition-colors"
+                    >
+                        Explore our menu
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- COPYRIGHT -->
+        <div class="border-t-2 border-tedi-brown/20 px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-2">
+
+            <p class="text-[11px] font-medium text-tedi-brown/55">
+                © 2026 Tedikap Indonesia. All rights reserved.
+            </p>
+
+            <p class="text-[11px] font-medium text-tedi-brown/55">
+                Made with ♡ for students & youth.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+    <!-- SHOPPING CART DRAWER MODAL -->
+    <div id="cart-drawer" class="fixed inset-0 bg-tedi-brown/40 backdrop-blur-sm z-50 hidden flex justify-end transition-opacity">
+        <div class="w-full max-w-md bg-cream-light h-full border-l-4 border-tedi-brown p-6 flex flex-col justify-between shadow-2xl relative">
+            
+            <!-- Drawer Header -->
+            <div>
+                <div class="flex items-center justify-between border-b-2 border-tedi-brown/20 pb-4 mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl">🛍️</span>
+                        <h3 class="font-heading text-2xl font-bold text-tedi-brown">Pesanan Kamu</h3>
+                    </div>
+                    <button onclick="toggleCart()" class="w-8 h-8 rounded-full bg-tedi-yellow border-2 border-tedi-brown text-tedi-brown font-bold flex items-center justify-center hover:bg-tedi-orange">
+                        ✕
+                    </button>
+                </div>
+
+                <!-- Items Container List -->
+                <div id="cart-items-list" class="space-y-3 max-h-[60vh] overflow-y-auto pr-1">
+                    <!-- Dynamic Cart Items Rendered Here -->
+                </div>
+            </div>
+
+            <!-- Drawer Footer Summary -->
+            <div class="border-t-2 border-tedi-brown/20 pt-4 bg-cream-light">
+                <div class="flex justify-between items-center mb-2 font-medium text-sm text-tedi-brown/80">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal" class="font-bold text-tedi-brown">Rp 0</span>
+                </div>
+                <div class="flex justify-between items-center mb-4 text-lg font-bold text-tedi-brown">
+                    <span>Total Pembayaran</span>
+                    <span id="cart-total" class="font-heading text-2xl text-tedi-green-dark">Rp 0</span>
+                </div>
+
+                <button onclick="checkoutCart()" class="w-full bg-tedi-green text-white font-heading font-bold text-lg py-3 rounded-2xl sticker-btn hover:bg-tedi-green-dark flex items-center justify-center gap-2">
+                    <span>Checkout Sekarang</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD MODAL -->
+    <div id="admin-modal" class="fixed inset-0 bg-tedi-brown/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white border-3 border-tedi-brown rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 shadow-2xl relative">
+            
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between border-b-2 border-tedi-brown/10 pb-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-tedi-periwinkle border-2 border-tedi-brown flex items-center justify-center text-xl">
+                        📊
+                    </div>
+                    <div>
+                        <h3 class="font-heading text-2xl font-bold text-tedi-brown">Tedikap Admin Dashboard</h3>
+                        <p class="text-xs text-tedi-brown/70 font-medium">Laporan Ringkasan Penjualan & Stok Toko Hari Ini</p>
+                    </div>
+                </div>
+                <button onclick="closeAdminModal()" class="w-9 h-9 rounded-full bg-tedi-yellow border-2 border-tedi-brown text-tedi-brown font-bold flex items-center justify-center hover:bg-tedi-orange">
+                    ✕
+                </button>
+            </div>
+
+            <!-- Admin Summary Cards Row -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                <div class="bg-tedi-green-light border-2 border-tedi-brown p-4 rounded-2xl">
+                    <span class="text-xs font-bold text-tedi-brown/70 block mb-1">TOTAL OMSET HARI INI</span>
+                    <span class="font-heading text-2xl font-bold text-tedi-green-dark">Rp 1.480.000</span>
+                    <span class="text-[10px] text-tedi-green-dark font-semibold block mt-1">↑ +18% dari kemarin</span>
+                </div>
+                <div class="bg-tedi-yellow/60 border-2 border-tedi-brown p-4 rounded-2xl">
+                    <span class="text-xs font-bold text-tedi-brown/70 block mb-1">TOTAL PESANAN</span>
+                    <span class="font-heading text-2xl font-bold text-tedi-brown">94 Cup / Pack</span>
+                    <span class="text-[10px] text-tedi-brown font-semibold block mt-1">Status: Smooth 🟢</span>
+                </div>
+                <div class="bg-tedi-pink border-2 border-tedi-brown p-4 rounded-2xl">
+                    <span class="text-xs font-bold text-tedi-brown/70 block mb-1">ITEM TERLARIS</span>
+                    <span class="font-heading text-xl font-bold text-tedi-brown">Jasmine Tea 🍃</span>
+                    <span class="text-[10px] text-tedi-brown font-semibold block mt-1">Terjual 38 Cup</span>
+                </div>
+            </div>
+
+            <!-- Stock Status & Recent Orders Split -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Stock Monitoring Table -->
+                <div class="border-2 border-tedi-brown rounded-2xl p-4 bg-cream-light">
+                    <h4 class="font-heading font-bold text-lg text-tedi-brown mb-3 flex items-center justify-between">
+                        <span>📦 Status Stok Produk</span>
+                        <span class="text-xs bg-tedi-green text-white px-2 py-0.5 rounded-full">Updated</span>
+                    </h4>
+                    <div class="space-y-2 text-xs font-bold">
+                        <div class="flex items-center justify-between p-2 bg-white border border-tedi-brown rounded-xl">
+                            <span>Jasmine Tea Leaves</span>
+                            <span class="text-tedi-green-dark">Aman (8.5 kg)</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2 bg-white border border-tedi-brown rounded-xl">
+                            <span>Dubai Chewy Cookie</span>
+                            <span class="text-tedi-orange-dark">Sisa Sedikit (12 pcs)</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2 bg-white border border-tedi-brown rounded-xl">
+                            <span>Susu Kopi Blend</span>
+                            <span class="text-tedi-green-dark">Aman (15 Liter)</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2 bg-white border border-tedi-brown rounded-xl">
+                            <span>Onigiri Special</span>
+                            <span class="text-tedi-green-dark">Aman (25 pcs)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Orders List -->
+                <div class="border-2 border-tedi-brown rounded-2xl p-4 bg-cream-light">
+                    <h4 class="font-heading font-bold text-lg text-tedi-brown mb-3">
+                        📋 Pesanan Masuk Terakhir
+                    </h4>
+                    <div class="space-y-2.5 text-xs">
+                        <div class="p-2.5 bg-white border border-tedi-brown rounded-xl flex items-center justify-between">
+                            <div>
+                                <span class="font-bold block text-tedi-brown">#TK-108 • Budi SMA 1</span>
+                                <span class="text-tedi-brown/70">2x Jasmine Tea, 1x Onigiri</span>
+                            </div>
+                            <span class="bg-tedi-green-light text-tedi-green-dark px-2 py-1 rounded-lg border border-tedi-green font-bold">Selesai</span>
+                        </div>
+                        <div class="p-2.5 bg-white border border-tedi-brown rounded-xl flex items-center justify-between">
+                            <div>
+                                <span class="font-bold block text-tedi-brown">#TK-109 • Sarah</span>
+                                <span class="text-tedi-brown/70">1x Kopi Susu, 1x Dubai Cookie</span>
+                            </div>
+                            <span class="bg-tedi-yellow text-tedi-brown px-2 py-1 rounded-lg border border-tedi-brown font-bold animate-pulse">Proses</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MASTER JAVASCRIPT LOGIC -->
+    <script>
+const productsData = [
+    // Tea Series
+    {
+        id: 1,
+        name: 'Jasmine Tea',
+        category: 'tea',
+        price: 8000,
+        tag: 'BEST SELLER',
+        icon: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400',
+        desc: 'Teh melati wangi khas Tedikap menyegarkan harimu.',
+        bg: 'bg-tedi-green-light'
+    },
+    {
+        id: 2,
+        name: 'Green Tea',
+        category: 'tea',
+        price: 10000,
+        tag: '',
+        icon: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400',
+        desc: 'Seduhan daun teh hijau alami kaya antioksidan.',
+        bg: 'bg-tedi-green-light'
+    },
+    {
+        id: 3,
+        name: 'Lemon Tea',
+        category: 'tea',
+        price: 12000,
+        tag: 'FAV',
+        icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnANBGYTbCPhpZ2r4N8xZqpRb2K4u-xx3SnmgQisMYoCMwcu74iG6Ys8oM&s=10',
+        desc: 'Perasan jeruk lemon asli dipadu teh manis segar.',
+        bg: 'bg-tedi-yellow/50'
+    },
+    {
+        id: 4,
+        name: 'Blackcurrant Tea',
+        category: 'tea',
+        price: 12000,
+        tag: '',
+        icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz02gBZ9BMQNu5hgTckQ8Gmdr_Trf0z8mqTjGuB1NKQJRPY5gBv4BPejV2&s=10',
+        desc: 'Rasa buah blackcurrant manis asam menyegarkan.',
+        bg: 'bg-tedi-lavender'
+    },
+    {
+        id: 5,
+        name: 'Lychee Tea',
+        category: 'tea',
+        price: 14000,
+        tag: 'BEST SELLER',
+        icon: 'https://images.unsplash.com/photo-1629203849820-fdd70d49c38e?w=400',
+        desc: 'Teh manis dengan aroma buah lychee yang juicy.',
+        bg: 'bg-tedi-pink'
+    },
+
+    // Coffee Series
+    {
+        id: 6,
+        name: 'Kopi Susu Tedikap',
+        category: 'coffee',
+        price: 15000,
+        tag: 'BEST SELLER',
+        icon: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400',
+        desc: 'Espresso creamy dengan gula aren asli, rasanya pas.',
+        bg: 'bg-amber-100'
+    },
+    {
+        id: 7,
+        name: 'Vanilla Latte',
+        category: 'coffee',
+        price: 18000,
+        tag: 'NEW ✦',
+        icon: 'https://images.unsplash.com/photo-1593443320739-77f74939d0da?w=400',
+        desc: 'Kopi lembut dengan sirup vanilla yang manis dan seimbang.',
+        bg: 'bg-tedi-yellow/60'
+    },
+
+    // Non-Coffee Series
+    {
+        id: 8,
+        name: 'Dark Chocolate',
+        category: 'non-coffee',
+        price: 16000,
+        tag: '',
+        icon: 'https://images.squarespace-cdn.com/content/v1/5916c81cf7e0ab8d478806df/1532570999102-BH41FQVWHVSHK4KV7ZFU/iced-spiced-stone-ground-chocolate-drink-3+%281+of+1%29.jpg',
+        desc: 'Cokelat pekat creamy yang bikin mood langsung naik.',
+        bg: 'bg-amber-200'
+    },
+    {
+        id: 9,
+        name: 'Chocolate Milo',
+        category: 'non-coffee',
+        price: 15000,
+        tag: 'FAV',
+        icon: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400',
+        desc: 'Minuman malt cokelat favorit sejuta umat.',
+        bg: 'bg-amber-100'
+    },
+    {
+        id: 10,
+        name: 'Orange Splash',
+        category: 'non-coffee',
+        price: 14000,
+        tag: '',
+        icon: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400',
+        desc: 'Segarnya jeruk orange manis dan dingin.',
+        bg: 'bg-tedi-orange/40'
+    },
+    {
+        id: 11,
+        name: 'Coconut Water',
+        category: 'non-coffee',
+        price: 12000,
+        tag: 'NEW ✦',
+        icon: 'https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/articles/health_tools/best_and_worst_drinks_for_your_health_slideshow/1800ss_thinkstock_rf_two_glasses_of_coconut_water.jpg?resize=750px:*&output-quality=75',
+        desc: 'Air kelapa segar sebagai penyegar dahaga alami.',
+        bg: 'bg-blue-100'
+    },
+
+    // Food & Snacks
+    {
+        id: 12,
+        name: 'Onigiri Special',
+        category: 'food',
+        price: 12000,
+        tag: 'BEST SELLER',
+        icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4STG_gDU9a-qVTlRDpL-hIbazcEoHBgZduqNdJyjbB3hoSxy3OSyMCEwt&s=10',
+        desc: 'Nasi kepal Jepang dengan isian ayam gurih dan nori.',
+        bg: 'bg-cream-light'
+    },
+    {
+        id: 13,
+        name: 'Roti Sandwich',
+        category: 'food',
+        price: 15000,
+        tag: '',
+        icon: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400',
+        desc: 'Sandwich lembut dengan isian keju dan daging asap.',
+        bg: 'bg-tedi-yellow/50'
+    },
+    {
+        id: 14,
+        name: 'Dubai Chewy Cookie',
+        category: 'food',
+        price: 18000,
+        tag: 'NEW ✦',
+        icon: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400',
+        desc: 'Cookie renyah dengan tekstur chewy yang lumer di mulut.',
+        bg: 'bg-tedi-orange/30'
+    },
+    {
+    id: 15,
+    name: 'Kentang Goreng',
+    category: 'food',
+    price: 12000,
+    tag: 'FAV',
+    icon: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400',
+    desc: 'Kentang goreng renyah dan gurih, cocok buat nemenin waktu santai.',
+    bg: 'bg-tedi-yellow/50'
+},
+{
+    id: 16,
+    name: 'Dimsum Ayam',
+    category: 'food',
+    price: 15000,
+    tag: 'NEW ✦',
+    icon: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=400',
+    desc: 'Dimsum ayam lembut dengan rasa gurih yang pas buat teman nugas.',
+    bg: 'bg-tedi-green-light'
+},
+];
+
+// Suggestions Dataset
+let suggestionsData = [
+    {
+        name: 'Andi SMA 2',
+        category: 'Drink Series 🧋',
+        idea: 'Tambahin topping Boba Pandan dong kak!',
+        time: 'Baru saja'
+    },
+    {
+        name: 'Clarissa',
+        category: 'Snack & Food 🥪',
+        idea: 'Roti Bakar Bandung Keju Cokelat buat temen nugas!',
+        time: '5m lalu'
+    },
+    {
+        name: 'Rian Kampus',
+        category: 'Coffee Special ☕',
+        idea: 'Kopi Susu Caramel Macchiato versi kantong pelajar!',
+        time: '12m lalu'
+    }
+];
+
+        // Shopping Cart State
+        let cartState = [];
+
+        // Format Currency Helper
+        function formatRupiah(number) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(number);
+        }
+
+        // Render Menu Cards
+        function renderMenu(filter = 'all') {
+    const gridContainer = document.getElementById('menu-grid');
+    gridContainer.innerHTML = '';
+
+    const filteredItems = filter === 'all'
+        ? productsData
+        : productsData.filter(item => item.category === filter);
+
+    filteredItems.forEach(item => {
+
+        const badgeHtml = item.tag ? `
+            <span class="absolute top-3 right-3 border border-tedi-brown text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-sm ${
+                item.tag.includes('BEST') ? 'bg-tedi-yellow text-tedi-brown' :
+                item.tag.includes('NEW') ? 'bg-tedi-orange text-tedi-brown' :
+                'bg-tedi-pink text-tedi-brown'
+            }">
+                ${item.tag}
+            </span>
+        ` : '';
+
+        const cardHtml = `
+            <div class="sticker-card bg-white rounded-3xl p-4 relative flex flex-col justify-between">
+
+                ${badgeHtml}
+
+                <div>
+                    <!-- Product Image -->
+                    <div class="w-full h-36 ${item.bg} rounded-2xl border border-tedi-brown/40 overflow-hidden mb-3 shadow-soft-inset">
+                        <img
+                            src="${item.icon}"
+                            alt="${item.name}"
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <h3 class="font-heading font-bold text-lg text-tedi-brown leading-tight">
+                        ${item.name}
+                    </h3>
+
+                    <p class="text-xs text-tedi-brown/70 font-medium mt-1 mb-3 line-clamp-2">
+                        ${item.desc}
+                    </p>
+                </div>
+
+                <div class="flex items-center justify-between pt-2 border-t border-dashed border-tedi-brown/30">
+
+                    <span class="font-heading font-extrabold text-tedi-green-dark text-base">
+                        ${formatRupiah(item.price)}
+                    </span>
+
+                    <button
+                        onclick="addToCart(${item.id})"
+                        class="bg-tedi-green text-white font-heading font-bold text-xs px-3.5 py-1.5 rounded-full sticker-btn hover:bg-tedi-green-dark flex items-center gap-1"
+                    >
+                        <span>+ Order</span>
+                    </button>
+
+                </div>
+            </div>
+        `;
+
+        gridContainer.insertAdjacentHTML('beforeend', cardHtml);
+    });
+}
+        // Filter Menu Tabs Handler
+        function filterMenu(category) {
+            document.querySelectorAll('.menu-tab-btn').forEach(btn => {
+                btn.classList.remove('bg-tedi-brown', 'text-white');
+                btn.classList.add('bg-cream-light', 'text-tedi-brown');
+            });
+
+            event.currentTarget.classList.remove('bg-cream-light', 'text-tedi-brown');
+            event.currentTarget.classList.add('bg-tedi-brown', 'text-white');
+
+            renderMenu(category);
+        }
+
+        // Add Item to Cart
+        function addToCart(productId) {
+            const product = productsData.find(p => p.id === productId);
+            const existing = cartState.find(item => item.id === productId);
+
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cartState.push({ ...product, qty: 1 });
+            }
+
+            updateCartUI();
+            
+            // Subtle toast message simulation
+            showToast(`Added ${product.name} to your order! 🧋`);
+        }
+
+        // Update Cart UI Drawer & Badges
+        function updateCartUI() {
+            const cartBadge = document.getElementById('cart-count-badge');
+            const cartItemsList = document.getElementById('cart-items-list');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const totalEl = document.getElementById('cart-total');
+
+            const totalItems = cartState.reduce((sum, i) => sum + i.qty, 0);
+            const totalPrice = cartState.reduce((sum, i) => sum + (i.price * i.qty), 0);
+
+            cartBadge.innerText = totalItems;
+            subtotalEl.innerText = formatRupiah(totalPrice);
+            totalEl.innerText = formatRupiah(totalPrice);
+
+            if (cartState.length === 0) {
+                cartItemsList.innerHTML = `
+                    <div class="text-center py-12 text-tedi-brown/60">
+                        <span class="text-4xl block mb-2">🛒</span>
+                        <p class="font-bold text-sm">Keranjang kamu masih kosong nih!</p>
+                        <p class="text-xs">Yuk, pilih menu favoritmu sekarang.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            cartItemsList.innerHTML = '';
+            cartState.forEach(item => {
+                const itemHtml = `
+                    <div class="bg-white border-2 border-tedi-brown p-3 rounded-2xl flex items-center justify-between gap-2 shadow-sm">
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">${item.icon}</span>
+                            <div>
+                                <h4 class="font-heading font-bold text-sm text-tedi-brown leading-tight">${item.name}</h4>
+                                <span class="text-xs font-bold text-tedi-green-dark">${formatRupiah(item.price)}</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-2 bg-cream p-1 rounded-xl border border-tedi-brown">
+                            <button onclick="changeQty(${item.id}, -1)" class="w-6 h-6 rounded-lg bg-white border border-tedi-brown font-bold text-xs flex items-center justify-center">-</button>
+                            <span class="text-xs font-bold px-1">${item.qty}</span>
+                            <button onclick="changeQty(${item.id}, 1)" class="w-6 h-6 rounded-lg bg-white border border-tedi-brown font-bold text-xs flex items-center justify-center">+</button>
+                        </div>
+                    </div>
+                `;
+                cartItemsList.insertAdjacentHTML('beforeend', itemHtml);
+            });
+        }
+
+        // Change Qty in Cart
+        function changeQty(productId, delta) {
+            const item = cartState.find(i => i.id === productId);
+            if (!item) return;
+
+            item.qty += delta;
+            if (item.qty <= 0) {
+                cartState = cartState.filter(i => i.id !== productId);
+            }
+            updateCartUI();
+        }
+
+        // Toggle Cart Modal Drawer
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        // Checkout Action
+        function checkoutCart() {
+            if (cartState.length === 0) {
+                alert('Pilih menu terlebih dahulu sebelum checkout ya!');
+                return;
+            }
+            alert('🎉 Pesanan kamu berhasil dikirim ke Kasir Tedikap! Silakan lakukan pembayaran di kedai.');
+            cartState = [];
+            updateCartUI();
+            toggleCart();
+        }
+
+        // Sticky Suggestion Board Logic
+        function renderSuggestions() {
+            const container = document.getElementById('sticky-notes-container');
+            container.innerHTML = '';
+
+            const colors = ['bg-tedi-yellow', 'bg-tedi-pink', 'bg-tedi-periwinkle', 'bg-tedi-orange/50'];
+
+            suggestionsData.forEach((sug, idx) => {
+                const bg = colors[idx % colors.length];
+                const noteHtml = `
+                    <div class="${bg} border-2 border-tedi-brown p-4 rounded-2xl shadow-sticker transform hover:scale-102 transition-transform relative">
+                        <span class="absolute top-2 right-3 text-xs font-bold text-tedi-brown/60">${sug.time}</span>
+                        <span class="bg-white border border-tedi-brown text-[10px] font-bold px-2 py-0.5 rounded-full inline-block mb-2">${sug.category}</span>
+                        <p class="font-handwriting text-lg text-tedi-brown font-bold leading-tight mb-2">"${sug.idea}"</p>
+                        <span class="text-xs font-bold text-tedi-brown/80 block text-right">— ${sug.name}</span>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', noteHtml);
+            });
+        }
+
+        // Submit New Suggestion
+        function submitSuggestion(e) {
+            e.preventDefault();
+            const name = document.getElementById('sug-name').value;
+            const category = document.getElementById('sug-category').value;
+            const idea = document.getElementById('sug-idea').value;
+
+            suggestionsData.unshift({
+                name: name,
+                category: category,
+                idea: idea,
+                time: 'Baru saja'
+            });
+
+            renderSuggestions();
+            document.getElementById('suggestion-form').reset();
+            showToast('Ide menu kamu berhasil terpasang di Board! ✦');
+        }
+
+        // Toast Notification Helper
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-6 right-6 bg-tedi-brown text-white border-2 border-tedi-yellow px-5 py-3 rounded-2xl shadow-sticker-lg text-sm font-bold z-50 animate-bounce flex items-center gap-2';
+            toast.innerHTML = `<span>✨</span> <span>${message}</span>`;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Admin Modal Controls
+        function openAdminModal() {
+            document.getElementById('admin-modal').classList.remove('hidden');
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.add('hidden');
+        }
+
+        function scrollToStatus() {
+            document.getElementById('store-status').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Initialize Page
+        window.onload = function() {
+            renderMenu('all');
+            renderSuggestions();
+            updateCartUI();
+        };
+    </script>
+</body>
+</html>
